@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
     <footer className="bg-background-alt py-12">
       <div className="container-custom">
         <div className="flex flex-col items-center">
-          <a href="#home" className="text-2xl font-bold text-primary mb-6">John.dev</a>
+          <a href="#home" className="text-2xl font-bold text-primary mb-6">Rizve.dev</a>
           
           <div className="flex space-x-6 mb-8">
             {socialLinks.map(link => (

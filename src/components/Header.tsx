@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Moon, Sun } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { navLinks } from '../data/navLinks';
-import { useTheme } from '../context/ThemeContext';
+import React, { useState, useEffect } from "react";
+import { Menu, X, Moon, Sun } from "lucide-react";
+import { motion } from "framer-motion";
+import { navLinks } from "../data/navLinks";
+import { useTheme } from "../context/ThemeContext";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,8 +14,8 @@ const Header: React.FC = () => {
       setScrollPosition(window.scrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMenu = () => {
@@ -27,24 +27,29 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrollPosition > 50 ? 'bg-background shadow-md py-3' : 'bg-transparent py-5'
+        scrollPosition > 50
+          ? "bg-background shadow-md py-3"
+          : "bg-transparent py-5"
       }`}
     >
       <div className="container-custom flex justify-between items-center">
-        <a href="#home" className="text-2xl font-bold text-primary flex items-center gap-2">
+        <a
+          href="#home"
+          className="text-2xl font-bold text-primary flex items-center gap-2"
+        >
           <span className="animate-wave inline-block">👋</span>
-          <span>John.dev</span>
+          <span>Rizve.dev</span>
         </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <ul className="flex space-x-8">
-            {navLinks.map(link => (
+            {navLinks.map((link) => (
               <li key={link.name}>
-                <a 
-                  href={link.url} 
+                <a
+                  href={link.url}
                   className="font-medium hover:text-primary transition-colors"
                 >
                   {link.name}
@@ -52,12 +57,14 @@ const Header: React.FC = () => {
               </li>
             ))}
           </ul>
-          <button 
-            onClick={toggleTheme} 
+          <button
+            onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-background-alt transition-colors"
-            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+            aria-label={
+              theme === "light" ? "Switch to dark mode" : "Switch to light mode"
+            }
           >
-            {theme === 'light' ? (
+            {theme === "light" ? (
               <Moon size={20} className="text-text" />
             ) : (
               <Sun size={20} className="text-text" />
@@ -67,19 +74,21 @@ const Header: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <div className="flex items-center md:hidden">
-          <button 
-            onClick={toggleTheme} 
+          <button
+            onClick={toggleTheme}
             className="p-2 mr-2 rounded-full hover:bg-background-alt transition-colors"
-            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+            aria-label={
+              theme === "light" ? "Switch to dark mode" : "Switch to light mode"
+            }
           >
-            {theme === 'light' ? (
+            {theme === "light" ? (
               <Moon size={20} className="text-text" />
             ) : (
               <Sun size={20} className="text-text" />
             )}
           </button>
-          <button 
-            onClick={toggleMenu} 
+          <button
+            onClick={toggleMenu}
             className="p-2 rounded-lg hover:bg-background-alt transition-colors"
             aria-label="Toggle menu"
           >
@@ -90,7 +99,7 @@ const Header: React.FC = () => {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <motion.div 
+        <motion.div
           className="md:hidden bg-background absolute top-full left-0 w-full shadow-md"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -99,10 +108,10 @@ const Header: React.FC = () => {
         >
           <nav className="container-custom py-5">
             <ul className="flex flex-col space-y-4">
-              {navLinks.map(link => (
+              {navLinks.map((link) => (
                 <li key={link.name}>
-                  <a 
-                    href={link.url} 
+                  <a
+                    href={link.url}
                     className="block py-2 font-medium hover:text-primary transition-colors"
                     onClick={closeMenu}
                   >
