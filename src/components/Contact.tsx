@@ -1,49 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Send, Github as GitHub, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github as GitHub, Linkedin, Twitter, Mail, MapPin, Phone, Clock, Send } from 'lucide-react';
 import { socialLinks } from '../data/socialLinks';
 
 const Contact: React.FC = () => {
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formError, setFormError] = useState(false);
-  
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormSubmitted(true);
-      setFormState({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      });
-    }, 1500);
-  };
   
   const renderSocialIcon = (iconName: string) => {
     switch (iconName) {
@@ -60,15 +25,57 @@ const Contact: React.FC = () => {
     }
   };
 
+  const contactInfo = [
+    {
+      icon: Mail,
+      label: 'Email',
+      value: 'rizve.rahman@example.com',
+      href: 'mailto:rizve.rahman@example.com',
+      color: 'from-blue-500 to-blue-600'
+    },
+    {
+      icon: Phone,
+      label: 'Phone',
+      value: '+1 (555) 123-4567',
+      href: 'tel:+15551234567',
+      color: 'from-green-500 to-green-600'
+    },
+    {
+      icon: MapPin,
+      label: 'Location',
+      value: 'New York, NY',
+      href: '#',
+      color: 'from-red-500 to-red-600'
+    },
+    {
+      icon: Clock,
+      label: 'Availability',
+      value: 'Open to opportunities',
+      href: '#',
+      color: 'from-purple-500 to-purple-600'
+    }
+  ];
+
   return (
-    <section id="contact" className="py-20" ref={ref}>
+    <section id="contact" className="py-20 bg-gradient-to-br from-background via-background-alt to-background" ref={ref}>
       <div className="container-custom">
-        <div className="section-title">
-          <motion.h2 
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl font-bold mb-4 pb-4"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary font-medium mb-6"
+          >
+            <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+            Let's Connect
+          </motion.div>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-accent to-secondary text-transparent bg-clip-text"
           >
             Get In Touch
           </motion.h2>
@@ -77,47 +84,130 @@ const Contact: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-text-light max-w-2xl mx-auto mb-12"
+            className="text-text-light max-w-3xl mx-auto text-lg leading-relaxed"
           >
-            Have a project in mind or want to discuss opportunities? I'd love to hear from you!
+            Ready to bring your next project to life? I'm always excited to discuss new opportunities, 
+            collaborate on innovative ideas, or simply connect with fellow developers and entrepreneurs.
           </motion.p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8, delay: 0.3 }}
+            className="space-y-8"
           >
-            <h3 className="text-2xl font-bold mb-6 text-primary">Let's Connect</h3>
+            {/* Contact Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {contactInfo.map((info, index) => (
+                <motion.a
+                  key={info.label}
+                  href={info.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  className="group relative bg-background border border-background-alt rounded-2xl p-6 hover:shadow-lg transition-all duration-300 hover:border-primary/20 hover:-translate-y-1"
+                >
+                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r ${info.color} text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <info.icon size={20} />
+                  </div>
+                  <h3 className="font-semibold text-primary mb-1 group-hover:text-primary-dark transition-colors">
+                    {info.label}
+                  </h3>
+                  <p className="text-text-light text-sm group-hover:text-text transition-colors">
+                    {info.value}
+                  </p>
+                </motion.a>
+              ))}
+            </div>
             
-            <p className="mb-8">
-              I'm currently available for freelance work and full-time positions. If you have a project that needs 
-              technical expertise, a role you think I'd be a good fit for, or just want to say hello, don't hesitate to reach out.
-            </p>
-            
-            <div className="mb-8">
-              <h4 className="text-lg font-semibold mb-4">Find me on</h4>
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="bg-background border border-background-alt rounded-2xl p-8"
+            >
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                  <Send className="w-4 h-4 text-white" />
+                </div>
+                Connect With Me
+              </h3>
+              
+              <p className="text-text-light mb-6 leading-relaxed">
+                Follow my journey, see my latest projects, and connect with me on social media. 
+                I love sharing insights about development and connecting with the tech community.
+              </p>
+              
               <div className="flex gap-4">
-                {socialLinks.map(link => (
-                  <a 
+                {socialLinks.map((link, index) => (
+                  <motion.a 
                     key={link.name}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-background-alt rounded-lg hover:bg-primary hover:text-white transition-colors"
+                    className="group relative p-4 bg-background-alt rounded-xl hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.4, delay: 0.9 + index * 0.1 }}
                     aria-label={link.name}
                   >
                     {renderSocialIcon(link.icon)}
-                  </a>
+                    <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-primary text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      {link.name}
+                    </div>
+                  </motion.a>
                 ))}
               </div>
-            </div>
+            </motion.div>
             
-            <div className="mb-8">
-              <h4 className="text-lg font-semibold mb-4">Location</h4>
-              <div className="aspect-video rounded-lg overflow-hidden">
+            {/* Quick Response Promise */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+              className="bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 rounded-2xl p-6 border border-primary/20"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-full bg-success/20 flex items-center justify-center">
+                  <Clock className="w-5 h-5 text-success" />
+                </div>
+                <h4 className="font-semibold text-primary">Quick Response Guarantee</h4>
+              </div>
+              <p className="text-text-light text-sm leading-relaxed">
+                I typically respond to all inquiries within 24 hours. For urgent matters, 
+                feel free to reach out via phone or LinkedIn for faster communication.
+              </p>
+            </motion.div>
+          </motion.div>
+          
+          {/* Interactive Map */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="space-y-6"
+          >
+            {/* Map Container */}
+            <div className="bg-background border border-background-alt rounded-2xl overflow-hidden shadow-lg">
+              <div className="p-6 border-b border-background-alt">
+                <h3 className="text-xl font-bold mb-2 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
+                    <MapPin className="w-4 h-4 text-white" />
+                  </div>
+                  My Location
+                </h3>
+                <p className="text-text-light">
+                  Based in New York, NY - Available for remote work worldwide
+                </p>
+              </div>
+              
+              <div className="aspect-video relative">
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059353029!2d-74.25986573739211!3d40.69714941680757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1619826381657!5m2!1sen!2s" 
                   width="100%" 
@@ -125,110 +215,65 @@ const Contact: React.FC = () => {
                   style={{ border: 0 }} 
                   allowFullScreen 
                   loading="lazy"
-                  title="Location"
-                ></iframe>
+                  title="Location Map"
+                  className="rounded-b-2xl"
+                />
+                
+                {/* Map Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
               </div>
             </div>
-          </motion.div>
-          
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <div className="bg-background-alt p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-6 text-primary">Send a Message</h3>
+            
+            {/* Availability Status */}
+            <div className="bg-background border border-background-alt rounded-2xl p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="font-semibold text-primary">Current Availability</h4>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-success rounded-full animate-pulse"></div>
+                  <span className="text-success text-sm font-medium">Available</span>
+                </div>
+              </div>
               
-              {formSubmitted ? (
-                <motion.div 
-                  className="bg-success/10 border border-success text-success p-4 rounded-lg"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <p className="font-medium mb-0">Thank you for your message! I'll get back to you as soon as possible.</p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit}>
-                  <div className="mb-4">
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formState.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-background-alt focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                      placeholder="Your name"
-                    />
-                  </div>
-                  
-                  <div className="mb-4">
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formState.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-background-alt focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                  
-                  <div className="mb-4">
-                    <label htmlFor="subject" className="block text-sm font-medium mb-2">Subject</label>
-                    <input
-                      type="text"
-                      id="subject"
-                      name="subject"
-                      value={formState.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-background-alt focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                      placeholder="Subject of your message"
-                    />
-                  </div>
-                  
-                  <div className="mb-6">
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formState.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className="w-full px-4 py-3 rounded-lg border border-background-alt focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
-                      placeholder="Your message here..."
-                    ></textarea>
-                  </div>
-                  
-                  <button
-                    type="submit"
-                    className="btn-primary w-full flex justify-center"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <div className="flex items-center">
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        Sending...
-                      </div>
-                    ) : (
-                      <div className="flex items-center">
-                        <Send size={18} className="mr-2" />
-                        Send Message
-                      </div>
-                    )}
-                  </button>
-                </form>
-              )}
+              <div className="space-y-3">
+                <div className="flex justify-between items-center py-2 border-b border-background-alt last:border-b-0">
+                  <span className="text-text-light">Freelance Projects</span>
+                  <span className="text-success font-medium">Open</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-background-alt last:border-b-0">
+                  <span className="text-text-light">Full-time Opportunities</span>
+                  <span className="text-success font-medium">Considering</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-background-alt last:border-b-0">
+                  <span className="text-text-light">Consulting</span>
+                  <span className="text-success font-medium">Available</span>
+                </div>
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-text-light">Mentoring</span>
+                  <span className="text-success font-medium">Limited Slots</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Time Zone Info */}
+            <div className="bg-background border border-background-alt rounded-2xl p-6">
+              <h4 className="font-semibold text-primary mb-4 flex items-center gap-2">
+                <Clock className="w-5 h-5" />
+                Working Hours
+              </h4>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-text-light">Time Zone</span>
+                  <span className="font-medium">EST (UTC-5)</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-text-light">Preferred Hours</span>
+                  <span className="font-medium">9 AM - 6 PM EST</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-text-light">Response Time</span>
+                  <span className="font-medium">Within 24 hours</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
