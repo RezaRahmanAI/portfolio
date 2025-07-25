@@ -19,6 +19,7 @@ function App() {
           <About />
           <Skills />
           <Portfolio />
+          <Mentorship />
           <Contact />
         </main>
         <Footer />
