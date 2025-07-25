@@ -16,7 +16,7 @@ export const textVariant = (delay: number) => {
   };
 };
 
-export const fadeIn = (direction: string, type: string, delay: number, duration: number) => {
+export const fadeIn = (direction: string, delay: number) => {
   return {
     hidden: {
       x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
@@ -28,10 +28,10 @@ export const fadeIn = (direction: string, type: string, delay: number, duration:
       y: 0,
       opacity: 1,
       transition: {
-        type: type,
-        delay: delay,
-        duration: duration,
-        ease: "easeOut",
+        type: "tween",
+        duration: 0.8,
+        delay,
+        ease: [0.25, 0.25, 0.25, 0.75],
       },
     },
   };
