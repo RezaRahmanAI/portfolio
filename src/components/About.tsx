@@ -34,84 +34,113 @@ const About: React.FC = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Image column */}
-          <motion.div 
-            className="max-w-md mx-auto lg:max-w-lg rounded-lg overflow-hidden shadow-lg"
-            initial={{ opacity: 0, x: -50 }}
-            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="aspect-square overflow-hidden rounded-lg">
-              <img 
-                src="about.jpg" 
-                alt="John Doe - Full Stack Developer" 
-                className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
-              />
+          <motion.div
+          variants={fadeIn('up', 0.3)}
+          initial="hidden"
+          animate={inView ? 'show' : 'hidden'}
+          className="max-w-4xl mx-auto"
+        >
+          <div className="relative">
+            <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-primary-500 via-accent-500 to-primary-500 rounded-full"></div>
+            
+            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-dark-100 dark:text-light-100 pl-4 bg-gradient-to-r from-primary-400 to-accent-400 text-transparent bg-clip-text">
+              Full Stack Developer with expertise in .NET Core and Modern Web Technologies
+            </h3>
+            
+            <div className="space-y-6 pl-4">
+              <p className="text-dark-300 dark:text-light-300">
+                Currently working as a Junior Developer at Object Canvas Technology, where I specialize 
+                in building robust web applications using .NET Core and modern frontend technologies. 
+                My journey in software development has been marked by continuous learning and hands-on 
+                experience with cutting-edge technologies.
+              </p>
+              
+              <div className="space-y-4 bg-light-200 dark:bg-dark-300 p-6 rounded-xl">
+                <h4 className="font-semibold text-lg text-primary-500">Professional Experience</h4>
+                
+                <div className="space-y-4">
+                  <div className="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-primary-500 before:rounded-full">
+                    <h5 className="font-medium text-dark-100 dark:text-light-100">Junior Developer & Technical Trainer</h5>
+                    <p className="text-primary-500 text-sm">Object Canvas Technology | Jan 2024 - Present</p>
+                    <p className="text-dark-300 dark:text-light-300 mt-1">
+                      Working on full-stack development with .NET Core API applications and MVC projects.
+                      Contributed to more than 10 projects focusing on scalable and maintainable solutions.
+                      Currently serving as a technical trainer, having successfully mentored 20+ students in .NET development.
+                    </p>
+                  </div>
+                  
+                  <div className="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-accent-500 before:rounded-full">
+                    <h5 className="font-medium text-dark-100 dark:text-light-100">Software Development Intern</h5>
+                    <p className="text-accent-500 text-sm">Object Canvas Technology | June 2023 - Dec 2023</p>
+                    <p className="text-dark-300 dark:text-light-300 mt-1">
+                      Gained hands-on experience with .NET MVC and API development.
+                      Collaborated with senior developers on various client projects.
+                    </p>
+                  </div>
+                  
+                  <div className="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-2 before:w-2 before:h-2 before:bg-secondary-500 before:rounded-full">
+                    <h5 className="font-medium text-dark-100 dark:text-light-100">Machine Learning Intern</h5>
+                    <p className="text-secondary-500 text-sm">Head Blocks | July 2023 - Oct 2023</p>
+                    <p className="text-dark-300 dark:text-light-300 mt-1">
+                      Part-time internship focused on machine learning applications.
+                      Worked on implementing ML algorithms and data analysis.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </motion.div>
-          
-          {/* Text content */}
-          <div>
-            <motion.h3 
-              className="text-2xl font-bold mb-4 text-primary"
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              Full-Stack Developer & Problem Solver
-            </motion.h3>
             
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              With over 5 years of experience in full-stack development, I specialize in building robust, scalable applications that solve real-world problems. My passion lies in creating seamless user experiences backed by clean, efficient code.
-            </motion.p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 my-12 pl-4">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="bg-light-200 dark:bg-dark-300 p-6 rounded-xl text-center group hover:bg-primary-500 transition-colors duration-300"
+              >
+                <h4 className="text-3xl font-bold text-primary-500 group-hover:text-white mb-2">10+</h4>
+                <p className="text-dark-300 dark:text-light-300 group-hover:text-white text-sm">Projects Done</p>
+              </motion.div>
+              
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="bg-light-200 dark:bg-dark-300 p-6 rounded-xl text-center group hover:bg-primary-500 transition-colors duration-300"
+              >
+                <h4 className="text-3xl font-bold text-primary-500 group-hover:text-white mb-2">1+</h4>
+                <p className="text-dark-300 dark:text-light-300 group-hover:text-white text-sm">Years Experience</p>
+              </motion.div>
+              
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="bg-light-200 dark:bg-dark-300 p-6 rounded-xl text-center group hover:bg-primary-500 transition-colors duration-300"
+              >
+                <h4 className="text-3xl font-bold text-primary-500 group-hover:text-white mb-2">20+</h4>
+                <p className="text-dark-300 dark:text-light-300 group-hover:text-white text-sm">Students Trained</p>
+              </motion.div>
+              
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="bg-light-200 dark:bg-dark-300 p-6 rounded-xl text-center group hover:bg-primary-500 transition-colors duration-300"
+              >
+                <h4 className="text-3xl font-bold text-primary-500 group-hover:text-white mb-2">24/7</h4>
+                <p className="text-dark-300 dark:text-light-300 group-hover:text-white text-sm">Support</p>
+              </motion.div>
+            </div>
             
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="mb-6"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="pl-4"
             >
-              I thrive in collaborative environments where I can leverage my technical expertise alongside effective communication skills to deliver exceptional results. My approach combines technical excellence with a focus on business goals.
-            </motion.p>
-            
-            <motion.div 
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 1 }}
-            >
-              <div className="flex items-center">
-                <Code size={20} className="text-primary mr-2" />
-                <span>Frontend Development</span>
-              </div>
-              <div className="flex items-center">
-                <Server size={20} className="text-primary mr-2" />
-                <span>Backend Architecture</span>
-              </div>
-              <div className="flex items-center">
-                <Database size={20} className="text-primary mr-2" />
-                <span>Database Design</span>
-              </div>
-              <div className="flex items-center">
-                <LayoutGrid size={20} className="text-primary mr-2" />
-                <span>Responsive Interfaces</span>
-              </div>
+              <a
+                href="/resume.pdf"
+                download
+                className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary-500 text-white font-medium transition-all overflow-hidden"
+              >
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary-600 to-accent-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                <Download size={18} className="relative z-10" />
+                <span className="relative z-10">Download Resume</span>
+              </a>
             </motion.div>
-            
-            <motion.a 
-              href="/resume.pdf" 
-              className="btn-primary mt-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-              download
-            >
-              <Download size={18} className="mr-2" />
-              Download Resume
-            </motion.a>
+          </div>
+        </motion.div>
           </div>
         </div>
       </div>
