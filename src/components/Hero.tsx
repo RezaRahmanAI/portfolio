@@ -1,10 +1,18 @@
-import { useCallback } from 'react';
-import { motion } from 'framer-motion';
-import { TypeAnimation } from 'react-type-animation';
-import { Link } from 'react-scroll';
-import { fadeIn, textVariant } from '../utils/animations';
-import { ArrowDown, Sparkles, Code, Laptop, Cpu, Globe, Cloud } from 'lucide-react';
-import SocialIcons from './SocialIcons';
+import { useCallback } from "react";
+import { motion } from "framer-motion";
+import { TypeAnimation } from "react-type-animation";
+import { Link } from "react-scroll";
+import { fadeIn, textVariant } from "../utils/animations";
+import {
+  ArrowDown,
+  Sparkles,
+  Code,
+  Laptop,
+  Cpu,
+  Globe,
+  Cloud,
+} from "lucide-react";
+import SocialIcons from "./SocialIcons";
 import Particles from "react-particles";
 import { loadSlim } from "tsparticles-slim";
 import type { Container, Engine } from "tsparticles-engine";
@@ -63,7 +71,7 @@ const Hero = () => {
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
           className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-3xl"
         />
@@ -75,7 +83,7 @@ const Hero = () => {
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
           className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-l from-secondary/20 to-primary/20 rounded-full blur-3xl"
         />
@@ -97,14 +105,14 @@ const Hero = () => {
             delay: index * 0.2,
           }}
           className={`absolute ${
-            index % 2 ? 'text-primary/30' : 'text-accent/30'
+            index % 2 ? "text-primary/30" : "text-accent/30"
           }`}
           style={{
-            top: `${20 + (index * 15)}%`,
-            left: index % 2 ? `${20 + (index * 10)}%` : `${60 + (index * 5)}%`,
+            top: `${20 + index * 15}%`,
+            left: index % 2 ? `${20 + index * 10}%` : `${60 + index * 5}%`,
           }}
         >
-          <Icon size={30 + (index * 5)} />
+          <Icon size={30 + index * 5} />
         </motion.div>
       ))}
 
@@ -124,7 +132,7 @@ const Hero = () => {
               type: "spring",
               stiffness: 260,
               damping: 20,
-              duration: 0.5
+              duration: 0.5,
             }}
             className="relative group"
           >
@@ -136,7 +144,7 @@ const Hero = () => {
               transition={{
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
               className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-full blur-xl opacity-50 group-hover:opacity-75"
             />
@@ -166,7 +174,7 @@ const Hero = () => {
               transition={{
                 duration: 2.5,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
               className="flex items-center justify-center gap-2 text-xl text-accent mb-4"
             >
@@ -199,13 +207,11 @@ const Hero = () => {
             <div className="h-20">
               <TypeAnimation
                 sequence={[
-                  'Full Stack Developer 💻',
+                  "Full Stack Developer 💻",
                   2000,
-                  '.NET Core Expert 🚀',
+                  ".NET Core Expert 🚀",
                   2000,
-                  'Angular Developer ⚡',
-                  2000,
-                  'React Enthusiast 🎯',
+                  "Angular Developer ⚡",
                   2000,
                 ]}
                 wrapper="h2"
@@ -223,7 +229,8 @@ const Hero = () => {
             transition={{ delay: 0.6 }}
             className="text-text-light max-w-xl mb-8 text-lg bg-gradient-to-r from-text via-text-light to-text bg-clip-text"
           >
-            Crafting digital experiences with modern technologies and creative solutions
+            Crafting digital experiences with modern technologies and creative
+            solutions
           </motion.p>
 
           {/* Enhanced Social Icons */}
@@ -247,7 +254,7 @@ const Hero = () => {
         transition={{
           duration: 2,
           repeat: Infinity,
-          repeatType: 'loop',
+          repeatType: "loop",
         }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 cursor-pointer z-20"
       >

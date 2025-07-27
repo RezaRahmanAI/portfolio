@@ -47,13 +47,13 @@ const Footer: React.FC = () => {
           </div>
           
           <div className="text-center text-text-light mb-8">
-            <p className="mb-1">John Doe | Full-Stack Developer</p>
+            <p className="mb-1">Rizve Rahman | Full-Stack Developer</p>
             <p>Building modern web experiences with passion and precision</p>
           </div>
           
           <div className="border-t border-text-light/20 w-full pt-6 flex justify-between items-center">
             <p className="text-sm text-text-light">
-              © {new Date().getFullYear()} John Doe. All rights reserved.
+              © {new Date().getFullYear()} Rizve Rahman. All rights reserved.
             </p>
             <button 
               onClick={scrollToTop}
