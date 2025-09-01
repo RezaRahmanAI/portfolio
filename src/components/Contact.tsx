@@ -28,32 +28,32 @@ const Contact: React.FC = () => {
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'rizve.rahman@example.com',
-      href: 'mailto:rizve.rahman@example.com',
-      color: 'from-blue-500 to-blue-600'
+      label: "Email",
+      value: "rizverahman.dev@gmail.com",
+      href: "mailto:rizverahman.dev@gmail.com",
+      color: "from-blue-500 to-blue-600",
     },
     {
       icon: Phone,
-      label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
-      color: 'from-green-500 to-green-600'
+      label: "Phone",
+      value: "+8801316928662",
+      href: "tel:+8801316928662",
+      color: "from-green-500 to-green-600",
     },
     {
       icon: MapPin,
-      label: 'Location',
-      value: 'New York, NY',
-      href: '#',
-      color: 'from-red-500 to-red-600'
+      label: "Location",
+      value: "Dhaka, Bangladesh",
+      href: "#",
+      color: "from-red-500 to-red-600",
     },
     {
       icon: Clock,
-      label: 'Availability',
-      value: 'Open to opportunities',
-      href: '#',
-      color: 'from-purple-500 to-purple-600'
-    }
+      label: "Availability",
+      value: "Open to opportunities",
+      href: "#",
+      color: "from-purple-500 to-purple-600",
+    },
   ];
 
   return (
@@ -203,13 +203,13 @@ const Contact: React.FC = () => {
                   My Location
                 </h3>
                 <p className="text-text-light">
-                  Based in New York, NY - Available for remote work worldwide
+                  Based in Mohammadpur, Dhaka - Available for remote work worldwide
                 </p>
               </div>
               
               <div className="aspect-video relative">
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059353029!2d-74.25986573739211!3d40.69714941680757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1619826381657!5m2!1sen!2s" 
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d920.7322413447627!2d90.35948116995856!3d23.754058527244972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sbd!4v1756745347574!5m2!1sen!2sbd" 
                   width="100%" 
                   height="100%" 
                   style={{ border: 0 }} 
